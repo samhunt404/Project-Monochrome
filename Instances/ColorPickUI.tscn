@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://f545dfyipij5"]
+
+[ext_resource type="Script" path="res://Scripts/UIHandler.gd" id="1_y7ne2"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y7ne2")
+
+[node name="SliderHolder" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 64
+
+[node name="1" type="VSlider" parent="SliderHolder"]
+layout_mode = 2
+max_value = 7.0
+tick_count = 7
+
+[node name="2" type="VSlider" parent="SliderHolder"]
+layout_mode = 2
+max_value = 7.0
+tick_count = 7
+
+[node name="3" type="VSlider" parent="SliderHolder"]
+layout_mode = 2
+max_value = 7.0
+tick_count = 7
+
+[node name="4" type="VSlider" parent="SliderHolder"]
+layout_mode = 2
+max_value = 7.0
+tick_count = 7
+
+[node name="5" type="VSlider" parent="SliderHolder"]
+layout_mode = 2
+max_value = 7.0
+tick_count = 7
+
+[node name="6" type="VSlider" parent="SliderHolder"]
+layout_mode = 2
+max_value = 7.0
+tick_count = 7
+
+[node name="7" type="VSlider" parent="SliderHolder"]
+layout_mode = 2
+max_value = 7.0
+tick_count = 7
+
+[node name="8" type="VSlider" parent="SliderHolder"]
+layout_mode = 2
+max_value = 7.0
+tick_count = 7
+
+[node name="ColorPicker" type="ColorPicker" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 305.0
+offset_top = 59.0
+offset_right = 575.0
+offset_bottom = 627.0
+grow_horizontal = 2
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(20, 175, 120, 175, 220, 175, 320, 175, 420, 175, 520, 175, 620, 175, 720, 175)
+
+[connection signal="color_changed" from="ColorPicker" to="." method="get_curve_from_color"]

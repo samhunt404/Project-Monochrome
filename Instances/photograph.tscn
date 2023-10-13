@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b62neu01jglye"]
+
+[ext_resource type="Script" path="res://Scripts/Photograph.gd" id="1_cklsg"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_hocxx"]
+size = Vector2(0.1, 0.1)
+
+[node name="Photograph" type="Node3D"]
+script = ExtResource("1_cklsg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13, 0, -0.15)
+mesh = SubResource("QuadMesh_hocxx")
+skeleton = NodePath("")

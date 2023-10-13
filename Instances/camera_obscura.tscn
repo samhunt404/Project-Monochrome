@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj3044kt2h0oy"]
+
+[ext_resource type="Script" path="res://Scripts/camera_obscura.gd" id="1_06vno"]
+[ext_resource type="PackedScene" uid="uid://chlqowdf51gqy" path="res://Assets/Meshes/CameraObscura.blend" id="1_f4u4m"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nlahj"]
+radius = 2.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qmsfw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_txhpr"]
+noise = SubResource("FastNoiseLite_qmsfw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_53d3o"]
+size = Vector2(0.25, 0.25)
+
+[node name="CameraObscura" type="Node3D"]
+script = ExtResource("1_06vno")
+
+[node name="ManipTrigger" type="Area3D" parent="." groups=["ManipTrigger"]]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ManipTrigger"]
+shape = SubResource("SphereShape3D_nlahj")
+
+[node name="CameraObscura" parent="." instance=ExtResource("1_f4u4m")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+vrs_texture = SubResource("NoiseTexture2D_txhpr")
+size = Vector2i(1024, 1024)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.336)
+fov = 30.0
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.336)
+remote_path = NodePath("../SubViewport/Camera3D")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.323948)
+
+[node name="ViewFinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.403285, 0.0751186, -0.29519)
+mesh = SubResource("QuadMesh_53d3o")

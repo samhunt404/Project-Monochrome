@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://da8mynqcalof0"]
+
+[ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes/Painting.blend" id="1_047nn"]
+[ext_resource type="Script" path="res://Scripts/canvas.gd" id="1_euslb"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_d7yf6"]
+resource_local_to_scene = true
+size = Vector2(1.333, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xefuc"]
+
+[node name="Canvas" type="Node3D"]
+script = ExtResource("1_euslb")
+
+[node name="CanvasMesh" type="MeshInstance3D" parent="."]
+layers = 17
+mesh = SubResource("QuadMesh_d7yf6")
+surface_material_override/0 = SubResource("StandardMaterial3D_xefuc")
+
+[node name="Painting" parent="." instance=ExtResource("1_047nn")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1024, 1024)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.132906)
+cull_mask = 16
+projection = 1
+fov = 37.8493
+size = 2.5
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.132906)
+remote_path = NodePath("../SubViewport/Camera3D")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="compare_images"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1p7gmlqjxlc1"]
+
+[ext_resource type="PackedScene" uid="uid://0pkm6satjbqm" path="res://Assets/Meshes/Tripod.blend" id="1_ogpsn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oti5m"]
+radius = 0.147075
+height = 1.55039
+
+[node name="Tripod" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784491, 0)
+shape = SubResource("CapsuleShape3D_oti5m")
+
+[node name="Tripod" parent="." instance=ExtResource("1_ogpsn")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0, 0, 0)
