@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://da8mynqcalof0"]
+[gd_scene load_steps=6 format=3 uid="uid://da8mynqcalof0"]
 
 [ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes/Painting.blend" id="1_047nn"]
 [ext_resource type="Script" path="res://Scripts/canvas.gd" id="1_euslb"]
@@ -8,6 +8,8 @@ resource_local_to_scene = true
 size = Vector2(1.333, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xefuc"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_teywo"]
 
 [node name="Canvas" type="Node3D"]
 script = ExtResource("1_euslb")
@@ -37,6 +39,9 @@ remote_path = NodePath("../SubViewport/Camera3D")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
+mesh = SubResource("QuadMesh_teywo")
 
 [connection signal="timeout" from="Timer" to="." method="compare_images"]

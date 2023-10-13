@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oti5m"]
 radius = 0.147075
-height = 1.55039
+height = 1.5
 
 [node name="Tripod" type="CharacterBody3D"]
 
