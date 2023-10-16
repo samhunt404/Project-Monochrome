@@ -6,37 +6,50 @@ extends Node3D
 @onready var viewport := $SubViewport
 @onready var poopMesh := $MeshInstance3D
 var viewTex : ViewportTexture
+var compareThread : Thread
+
 
 func _ready():
+	compareThread = Thread.new()
 	viewTex = viewport.get_texture()
 	var mat := StandardMaterial3D.new()
 	mat.albedo_texture = viewport.get_texture()
 	poopMesh.material_override = mat
+
+
 func _process(delta):
 	pass
 func _input(event):
 	if event.is_action_pressed("debug_test"):
-		compare_images()
+		compareThread.wait_to_finish()
+		compareThread.start(compare_images.bind())
 
 func compare_images():
 	var image: Image = canvasTexture.get_image()
 	var compareImage: Image = viewTex.get_image()
 	
-	var imageBytes: PackedByteArray  = image.get_data()
-	var compareImageBytes: PackedByteArray = compareImage.get_data()
-
-	var imageIntArray:   PackedInt32Array = imageBytes.to_int32_array()
-	var compareIntArray: PackedInt32Array = compareImageBytes.to_int32_array()
-	var byteArraySize : int = imageIntArray.size()
-	print(byteArraySize - compareIntArray.size())
-	var pixelThreshold := 1000
+	image.decompress()
+	compareImage.decompress()
 	
-	var diff := 0.0
+	var pixelThreshold := 0.25
+	
+	var diff : int = 0
 	var percentdiff := 0.0
-	for i in range(byteArraySize):
-		if abs(imageIntArray[i] - compareIntArray[i]) > pixelThreshold:
-			diff += 1.0
+	
+	var xMax : int = image.get_size().x
+	var yMax : int = image.get_size().y
+	
+	for i in range(0,xMax * yMax):
+		var x : int = i % xMax
+		var y : int = i / yMax
+		var colorA := Vector3(image.get_pixel(x,y).r,image.get_pixel(x,y).g,image.get_pixel(x,y).b)
+		var colorB := Vector3(compareImage.get_pixel(x,y).r,compareImage.get_pixel(x,y).g,compareImage.get_pixel(x,y).b)
+		if (colorA - colorB).length() > pixelThreshold:
+			diff += 1
+	
+	percentdiff = diff / float(xMax * yMax)
+	
+	print(percentdiff)
 
-	percentdiff = diff / float(byteArraySize)
-
-	print("percentdiff: ", percentdiff)
+func _exit_tree():
+	compareThread.wait_to_finish()
