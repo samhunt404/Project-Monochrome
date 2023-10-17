@@ -21,7 +21,8 @@ func _process(delta):
 	pass
 func _input(event):
 	if event.is_action_pressed("debug_test"):
-		compareThread.wait_to_finish()
+		if compareThread.is_started():
+			compareThread.wait_to_finish()
 		compareThread.start(compare_images.bind())
 
 func compare_images():
@@ -49,7 +50,7 @@ func compare_images():
 	
 	percentdiff = diff / float(xMax * yMax)
 	
-	print(percentdiff)
+	print("Success!" if percentdiff < 0.7 else "Try again!")
 
 func _exit_tree():
 	compareThread.wait_to_finish()

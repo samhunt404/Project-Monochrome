@@ -20,6 +20,7 @@ var mouse_look_enabled = true
 @onready var trigger = $GrabbableArea
 @onready var hand = $SpringArm3D/Hand
 
+@onready var handManipulator = $Camera3D/Hand
 var grabTarget
 
 var film : Photo
@@ -63,18 +64,17 @@ func _input(event):
 			for o in trigger.get_overlapping_bodies():
 				if o.is_in_group("Pickup"):
 					grabTarget = o
+	
 	if event.is_action_pressed("Action_Take"):
 			for o in trigger.get_overlapping_areas():
 				if o.is_in_group("ManipTrigger"):
 					var target = o.owner
-					if film != null:
-						print("gave film to  " + target.name)
-						film._transfer(target)
-						film = null
+					if handManipulator.hasFilm:
+						handManipulator.film._transfer(target)
 					else:
-						print("took film from " + target.name)
-						film = target.film
-					break
+						target.film._transfer(handManipulator)
+					
+	
 	if event.is_action_pressed("Action_Interact"):
 		for o in trigger.get_overlapping_areas():
 			if o.is_in_group("ManipTrigger"):
