@@ -71,7 +71,7 @@ func _input(event):
 					var target = o.owner
 					if handManipulator.hasFilm:
 						handManipulator.film._transfer(target)
-					else:
+					elif target.hasFilm:
 						target.film._transfer(handManipulator)
 					
 	
