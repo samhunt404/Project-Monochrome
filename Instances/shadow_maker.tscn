@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkqy6xg4nm0d3"]
+
+[ext_resource type="Script" path="res://Scripts/shadow_maker.gd" id="1_ose5b"]
+[ext_resource type="Shader" path="res://Scripts/shadow_maker.gdshader" id="2_irsng"]
+[ext_resource type="Texture2D" uid="uid://b63cdx3nwec8c" path="res://Assets/Textures/debugNoise.png" id="3_h1wox"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_gtpeu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ss7yy"]
+render_priority = 0
+shader = ExtResource("2_irsng")
+shader_parameter/tex = ExtResource("3_h1wox")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r0nmj"]
+
+[node name="ShadowMaker" type="Node3D"]
+script = ExtResource("1_ose5b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 17
+mesh = SubResource("QuadMesh_gtpeu")
+surface_material_override/0 = SubResource("ShaderMaterial_ss7yy")
+
+[node name="Area3D" type="Area3D" parent="." groups=["ManipTrigger"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_r0nmj")

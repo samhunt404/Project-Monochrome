@@ -19,7 +19,6 @@ func _ready():
 func _grab():
 	HandHandler.show()
 	pic.show()
-	tempAnim.play("Grab")
 	mat.albedo_texture = film.tex
 
 func _relinquish():

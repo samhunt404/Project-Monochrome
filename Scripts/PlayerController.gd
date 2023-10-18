@@ -10,7 +10,9 @@ var mouse_look_enabled = true
 
 #used to control how sensitive the mouse is
 @export var speed : float = 5.0
+@export var slowSpeed : float = 0.25
 @export var mouse_sens : Vector2 = Vector2(0.005,0.005)
+@export var mouse_sens_slow : Vector2 = Vector2(0.001,0.001)
 @export var vertical_lim : float = PI/2.0
 
 #access the camera seperately so we aren't tilting the collider when looking up
@@ -38,20 +40,22 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("Walk_Left", "Walk_Right", "Walk_Forward", "Walk_Backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var currSpeed = slowSpeed if Input.is_action_pressed("Slow_Down") else speed
 	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x = direction.x * currSpeed
+		velocity.z = direction.z * currSpeed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, currSpeed)
+		velocity.z = move_toward(velocity.z, 0, currSpeed)
 
 	move_and_slide()
 
 func _input(event):
 	if event is InputEventMouseMotion and mouse_look_enabled:
 		
-		rotate_y(-event.relative.x * mouse_sens.y)
-		cam.rotate_x(-event.relative.y * mouse_sens.x)
+		var currSpeed = mouse_sens_slow if(Input.is_action_pressed("Slow_Down")) else mouse_sens
+		rotate_y(-event.relative.x * currSpeed.y)
+		cam.rotate_x(-event.relative.y * currSpeed.x)
 		
 		#ensure we are within fov
 		cam.rotation.x = clamp(cam.rotation.x,-(vertical_lim/2.0),(vertical_lim/2.0))

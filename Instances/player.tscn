@@ -36,5 +36,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.74228e-08, 0, 1)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.367385, 1.87183, 0.165202)
-light_energy = 0.5
-omni_range = 1.00736
+light_energy = 0.75
+omni_range = 1.25383

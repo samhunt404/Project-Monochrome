@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkqgau2y3b76n"]
+
+[ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes/Painting.blend" id="1_ggdq0"]
+[ext_resource type="Texture2D" uid="uid://cy671digv3p4s" path="res://Assets/Textures/MonaLisaProjection.png" id="2_ydjap"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_hvogv"]
+size = Vector2(2.5, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8ahx"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_ydjap")
+
+[node name="RefPainting" type="Node3D"]
+
+[node name="Painting" parent="." instance=ExtResource("1_ggdq0")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_hvogv")
+surface_material_override/0 = SubResource("StandardMaterial3D_a8ahx")

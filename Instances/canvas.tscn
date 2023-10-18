@@ -27,7 +27,7 @@ mesh = SubResource("QuadMesh_d7yf6")
 surface_material_override/0 = SubResource("StandardMaterial3D_xefuc")
 
 [node name="Painting" parent="." instance=ExtResource("1_047nn")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0721633)
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true

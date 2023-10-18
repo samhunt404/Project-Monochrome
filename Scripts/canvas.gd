@@ -1,15 +1,20 @@
 extends Node3D
 
 @export var canvasTexture : Texture
+@export var doorToOpen : NodePath
+var door : Door
 
 @onready var canvasMesh := $CanvasMesh
 @onready var viewport := $SubViewport
 @onready var poopMesh := $MeshInstance3D
+
 var viewTex : ViewportTexture
 var compareThread : Thread
 
 
 func _ready():
+	if(doorToOpen != null and get_node(doorToOpen) is Door):
+		door = get_node(doorToOpen)
 	compareThread = Thread.new()
 	viewTex = viewport.get_texture()
 	var mat := StandardMaterial3D.new()
@@ -17,7 +22,7 @@ func _ready():
 	poopMesh.material_override = mat
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 func _input(event):
 	if event.is_action_pressed("debug_test"):
@@ -42,6 +47,7 @@ func compare_images():
 	
 	for i in range(0,xMax * yMax):
 		var x : int = i % xMax
+		@warning_ignore("integer_division")
 		var y : int = i / yMax
 		var colorA := Vector3(image.get_pixel(x,y).r,image.get_pixel(x,y).g,image.get_pixel(x,y).b)
 		var colorB := Vector3(compareImage.get_pixel(x,y).r,compareImage.get_pixel(x,y).g,compareImage.get_pixel(x,y).b)
@@ -51,6 +57,8 @@ func compare_images():
 	percentdiff = diff / float(xMax * yMax)
 	
 	print("Success!" if percentdiff < 0.7 else "Try again!")
+	if(percentdiff < 0.7):
+		door.call_deferred_thread_group("_Permaopen")
 
 func _exit_tree():
 	compareThread.wait_to_finish()

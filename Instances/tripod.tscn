@@ -6,11 +6,11 @@
 radius = 0.147075
 height = 1.5
 
-[node name="Tripod" type="CharacterBody3D"]
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="Tripod2" parent="." instance=ExtResource("1_ogpsn")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784491, 0)
 shape = SubResource("CapsuleShape3D_oti5m")
-
-[node name="Tripod" parent="." instance=ExtResource("1_ogpsn")]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0, 0, 0)
