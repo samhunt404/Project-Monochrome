@@ -58,7 +58,7 @@ func compare_images():
 	
 	print("Success!" if percentdiff < 0.7 else "Try again!")
 	if(percentdiff < 0.7):
-		door.call_deferred_thread_group("_Permaopen")
+		door.call_deferred_thread_group("_perma_open")
 
 func _exit_tree():
 	compareThread.wait_to_finish()

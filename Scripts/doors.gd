@@ -4,7 +4,6 @@ class_name Door
 
 @export var playerOpenable = true
 @onready var animPlayer = $AnimationPlayer
-@onready var timer = $Timer
 @onready var player = get_tree().get_nodes_in_group("Player")[0]
 @onready var area = $Area3D
 func _input(event):
