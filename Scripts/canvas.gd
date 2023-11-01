@@ -1,7 +1,8 @@
 extends Node3D
 
-@export var canvasTexture : Texture
+@export var targetTexture : Texture
 @export var doorToOpen : NodePath
+@export var lever : NodePath
 var door : Door
 
 @onready var canvasMesh := $CanvasMesh
@@ -13,6 +14,8 @@ var compareThread : Thread
 
 
 func _ready():
+	var leverInst = get_node(lever)
+	leverInst.connect("LeverFired",_start_compare_imgs)
 	if(doorToOpen != null and get_node(doorToOpen) is Door):
 		door = get_node(doorToOpen)
 	compareThread = Thread.new()
@@ -21,17 +24,14 @@ func _ready():
 	mat.albedo_texture = viewport.get_texture()
 	poopMesh.material_override = mat
 
-
-func _process(_delta):
-	pass
-func _input(event):
-	if event.is_action_pressed("debug_test"):
-		if compareThread.is_started():
-			compareThread.wait_to_finish()
-		compareThread.start(compare_images.bind())
+func _start_compare_imgs():
+	print(compareThread.is_alive())
+	if(not compareThread.is_alive()):
+		compareThread.wait_to_finish()
+		compareThread.start(compare_images)
 
 func compare_images():
-	var image: Image = canvasTexture.get_image()
+	var image: Image = targetTexture.get_image()
 	var compareImage: Image = viewTex.get_image()
 	
 	image.decompress()
@@ -56,9 +56,13 @@ func compare_images():
 	
 	percentdiff = diff / float(xMax * yMax)
 	
-	print("Success!" if percentdiff < 0.7 else "Try again!")
-	if(percentdiff < 0.7):
-		door.call_deferred_thread_group("_perma_open")
+	print(percentdiff)
+	
+	
+	if(percentdiff < 0.75):
+		door.call_thread_safe("_perma_open")
+	
+	
 
 func _exit_tree():
 	compareThread.wait_to_finish()

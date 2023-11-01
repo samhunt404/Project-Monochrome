@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb4o8fp38n3ll"]
+
+[ext_resource type="PackedScene" uid="uid://cgja0rj1a2wuf" path="res://Assets/Meshes/Lever.blend" id="1_he7br"]
+[ext_resource type="Script" path="res://Scripts/lever.gd" id="1_hoeex"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wqg56"]
+radius = 1.0
+
+[node name="Lever" type="Node3D"]
+script = ExtResource("1_hoeex")
+
+[node name="Lever" parent="." instance=ExtResource("1_he7br")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Lever" parent="Lever" index="0"]
+transform = Transform3D(0.462445, -0.637148, -5.22706e-08, 0.382289, 0.770741, -1.85971e-08, 5.21362e-08, -3.16177e-08, 0.6, 0, 0, 0)
+
+[node name="Trigger" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_wqg56")
+
+[editable path="Lever"]

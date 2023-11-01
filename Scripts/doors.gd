@@ -16,5 +16,6 @@ func _temp_open():
 
 
 func _perma_open():
+	print("Opening")
 	if not animPlayer.is_playing():	
 		animPlayer.play("Open")

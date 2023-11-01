@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bik8syx83i4pj"]
+[gd_scene load_steps=18 format=3 uid="uid://bik8syx83i4pj"]
 
 [ext_resource type="PackedScene" uid="uid://btnws7h7c4enk" path="res://Instances/player.tscn" id="1_p1rbe"]
 [ext_resource type="PackedScene" uid="uid://cjhfrr4hak2bg" path="res://Instances/lantern.tscn" id="3_1531w"]
@@ -7,7 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cy671digv3p4s" path="res://Assets/Textures/MonaLisaProjection.png" id="5_tbugb"]
 [ext_resource type="PackedScene" uid="uid://da8mynqcalof0" path="res://Instances/canvas.tscn" id="7_mxprf"]
 [ext_resource type="PackedScene" uid="uid://dmnaipovbyltg" path="res://Instances/doors.tscn" id="7_nfjie"]
-[ext_resource type="PackedScene" uid="uid://bkqgau2y3b76n" path="res://Instances/ref_painting.tscn" id="9_44g56"]
+[ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes/Painting.blend" id="8_oxwb5"]
+[ext_resource type="PackedScene" uid="uid://bb4o8fp38n3ll" path="res://Instances/lever.tscn" id="9_oqnas"]
 
 [sub_resource type="Environment" id="Environment_ad0lv"]
 background_mode = 1
@@ -29,6 +30,15 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6myyt"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_iu4hx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_hvogv"]
+size = Vector2(2.5, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8ahx"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("5_tbugb")
 
 [node name="Node3D" type="Node3D"]
 
@@ -71,13 +81,13 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("ConvexPolygonShape3D_74y1o")
 
-[node name="Tripod" parent="." groups=["Pickup"] instance=ExtResource("4_uv3j6")]
+[node name="Tripod" parent="." instance=ExtResource("4_uv3j6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -2)
 
 [node name="Lantern" parent="Tripod" instance=ExtResource("3_1531w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
-[node name="Tripod2" parent="." groups=["Pickup"] instance=ExtResource("4_uv3j6")]
+[node name="Tripod2" parent="." instance=ExtResource("4_uv3j6")]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 6.46235, 4.76837e-07, -0.728517)
 
 [node name="CameraObscura" parent="Tripod2" instance=ExtResource("5_b2b05")]
@@ -105,8 +115,9 @@ spot_range = 6.09455
 
 [node name="Canvas" parent="." instance=ExtResource("7_mxprf")]
 transform = Transform3D(0.999997, 0, 5.68434e-14, 0, 0.999997, 0, -5.68434e-14, 0, 0.999997, -3.17259, 1.6, -10.1734)
-canvasTexture = ExtResource("5_tbugb")
+targetTexture = ExtResource("5_tbugb")
 doorToOpen = NodePath("../Doors")
+lever = NodePath("../Lever")
 
 [node name="CanvasMesh" parent="Canvas" index="0"]
 mesh = SubResource("QuadMesh_civ7w")
@@ -114,24 +125,28 @@ mesh = SubResource("QuadMesh_civ7w")
 [node name="Camera3D" parent="Canvas/SubViewport" index="0"]
 transform = Transform3D(0.999997, 0, 5.68434e-14, 0, 0.999997, 0, -5.68434e-14, 0, 0.999997, -3.17259, 1.6, -10.0405)
 
-[node name="MeshInstance3D" parent="Canvas" index="5"]
+[node name="MeshInstance3D" parent="Canvas" index="4"]
 material_override = SubResource("StandardMaterial3D_6myyt")
 
 [node name="Doors" parent="." instance=ExtResource("7_nfjie")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.00651276, 0, -10.3283)
 playerOpenable = false
 
-[node name="Door2" parent="Doors" index="1"]
-transform = Transform3D(-0.75, 0, -1.90139e-06, 0, 0.75, 0, 1.90139e-06, 0, -0.75, 0, 0, -1.5)
-
 [node name="Doors2" parent="." instance=ExtResource("7_nfjie")]
 transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -3.45579, 0, -3.03974)
 
-[node name="Door2" parent="Doors2" index="1"]
-transform = Transform3D(-0.75, 0, -1.90139e-06, 0, 0.75, 0, 1.90139e-06, 0, -0.75, 0, 0, -1.5)
-
-[node name="RefPainting" parent="." instance=ExtResource("9_44g56")]
+[node name="RefPainting" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.54007, 1.64371, -9.91686)
+
+[node name="Painting" parent="RefPainting" instance=ExtResource("8_oxwb5")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RefPainting"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_hvogv")
+surface_material_override/0 = SubResource("StandardMaterial3D_a8ahx")
+
+[node name="Lever" parent="." instance=ExtResource("9_oqnas")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126544, -0.00162669, -4.95884)
 
 [editable path="Canvas"]
 [editable path="Doors"]
