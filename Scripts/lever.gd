@@ -5,7 +5,6 @@ extends Node3D
 @onready var trigger = $Trigger
 @onready var player = get_tree().get_nodes_in_group("Player")[0]
 
-@export var conditionalPortrait : NodePath
 
 signal LeverFired
 

@@ -3,7 +3,8 @@ extends Node3D
 @export var targetTexture : Texture
 @export var doorToOpen : NodePath
 @export var lever : NodePath
-var door : Door
+var leverInst
+var door
 
 @onready var canvasMesh := $CanvasMesh
 @onready var viewport := $SubViewport
@@ -14,9 +15,10 @@ var compareThread : Thread
 
 
 func _ready():
-	var leverInst = get_node(lever)
-	leverInst.connect("LeverFired",_start_compare_imgs)
-	if(doorToOpen != null and get_node(doorToOpen) is Door):
+	if(lever != NodePath("")):
+		leverInst = get_node(lever)
+		leverInst.connect("LeverFired",_start_compare_imgs)
+	if(doorToOpen != null):
 		door = get_node(doorToOpen)
 	compareThread = Thread.new()
 	viewTex = viewport.get_texture()
@@ -25,9 +27,9 @@ func _ready():
 	poopMesh.material_override = mat
 
 func _start_compare_imgs():
-	print(compareThread.is_alive())
-	if(not compareThread.is_alive()):
+	if(compareThread.is_started()):
 		compareThread.wait_to_finish()
+	if(not compareThread.is_alive()):
 		compareThread.start(compare_images)
 
 func compare_images():
@@ -55,9 +57,6 @@ func compare_images():
 			diff += 1
 	
 	percentdiff = diff / float(xMax * yMax)
-	
-	print(percentdiff)
-	
 	
 	if(percentdiff < 0.75):
 		door.call_thread_safe("_perma_open")

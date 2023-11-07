@@ -6,7 +6,8 @@ class_name Player
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 #make sure the player doesn't look around while in pause menus and the likes
-var mouse_look_enabled = true
+var inputDisabled = false
+
 
 #used to control how sensitive the mouse is
 @export var speed : float = 5.0
@@ -29,8 +30,7 @@ var film : Photo
 
 
 func _ready():
-	if mouse_look_enabled:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -39,6 +39,7 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("Walk_Left", "Walk_Right", "Walk_Forward", "Walk_Backward")
+	input_dir = Vector2.ZERO if inputDisabled else input_dir #ensure input can be disabled in pause
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var currSpeed = slowSpeed if Input.is_action_pressed("Slow_Down") else speed
 	if direction:
@@ -51,7 +52,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _input(event):
-	if event is InputEventMouseMotion and mouse_look_enabled:
+	if event is InputEventMouseMotion and not inputDisabled:
 		
 		var currSpeed = mouse_sens_slow if(Input.is_action_pressed("Slow_Down")) else mouse_sens
 		rotate_y(-event.relative.x * currSpeed.y)
@@ -64,10 +65,12 @@ func _input(event):
 	if event.is_action_pressed("Action_Grab"):
 		if grabTarget != null:
 			grabTarget = null
+			_resetDoors()
 		else:
 			for o in trigger.get_overlapping_bodies():
 				if o.is_in_group("Pickup"):
 					grabTarget = o
+					_resetDoors()
 	
 	if event.is_action_pressed("Action_Take"):
 			for o in trigger.get_overlapping_areas():
@@ -75,8 +78,10 @@ func _input(event):
 					var target = o.owner
 					if handManipulator.hasFilm:
 						handManipulator.film._transfer(target)
+						_resetDoors()
 					elif target.hasFilm:
 						target.film._transfer(handManipulator)
+						_resetDoors()
 					
 	
 	if event.is_action_pressed("Action_Interact"):
@@ -91,3 +96,7 @@ func _process(_delta):
 	if grabTarget != null:
 		grabTarget.global_position = lerp(grabTarget.global_position,hand.global_position,0.25)
 		grabTarget.global_rotation.y = lerp_angle(grabTarget.global_rotation.y,hand.global_rotation.y,0.25)
+
+func _resetDoors():
+	for d in get_tree().get_nodes_in_group("Door"):
+		d._close()
