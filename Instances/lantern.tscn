@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjhfrr4hak2bg"]
+[gd_scene load_steps=5 format=3 uid="uid://cjhfrr4hak2bg"]
 
 [ext_resource type="Script" path="res://Scripts/Lantern.gd" id="1_712e8"]
 [ext_resource type="PackedScene" uid="uid://dyqnfxmxyp3aq" path="res://Assets/Meshes/MagicLantern.blend" id="1_waaqc"]
+[ext_resource type="Material" uid="uid://r5w6oibputdg" path="res://Materials/Bulb_dim.tres" id="3_1v5fl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3gah3"]
 
@@ -9,7 +10,10 @@
 script = ExtResource("1_712e8")
 
 [node name="MagicLantern" parent="." instance=ExtResource("1_waaqc")]
-transform = Transform3D(1.13247e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.13247e-07, 0, 0, 0.0609883)
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, 0, 0)
+
+[node name="Bulb" parent="MagicLantern" index="1"]
+surface_material_override/1 = ExtResource("3_1v5fl")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.336)
@@ -25,10 +29,4 @@ spot_range = 10.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_3gah3")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
-transform = Transform3D(0.999909, 0, 0.0134561, 0, 1, 0, -0.0134561, 0, 0.999909, 0, 0, 0)
-spring_length = 8.0
-
-[node name="Decal" type="Decal" parent="SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 8)
-size = Vector3(15, 2, 15)
+[editable path="MagicLantern"]
