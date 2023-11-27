@@ -24,6 +24,10 @@ PauseHandler="*res://Scripts/PauseHandler.gd"
 window/size/mode=3
 window/stretch/aspect="ignore"
 
+[dotnet]
+
+project/assembly_name="Project Monochrome"
+
 [input]
 
 Walk_Forward={

@@ -39,7 +39,7 @@ func compare_images():
 	image.decompress()
 	compareImage.decompress()
 	
-	var pixelThreshold := 0.25
+	var pixelThreshold := 0.5
 	
 	var diff : int = 0
 	var percentdiff := 0.0
@@ -57,7 +57,7 @@ func compare_images():
 			diff += 1
 	
 	percentdiff = diff / float(xMax * yMax)
-	
+	print(percentdiff)
 	if(percentdiff < 0.75):
 		door.call_thread_safe("_perma_open")
 	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://btnws7h7c4enk"]
+[gd_scene load_steps=6 format=3 uid="uid://btnws7h7c4enk"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_wurc5"]
 [ext_resource type="PackedScene" uid="uid://dwo5gkpueq8xs" path="res://Instances/hand.tscn" id="2_7yov5"]
+[ext_resource type="CameraAttributesPractical" uid="uid://dlwllga3rgiro" path="res://Instances/Resources/MainCameraAttributes.tres" id="2_tl88n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kor6q"]
 
@@ -17,6 +18,7 @@ shape = SubResource("CapsuleShape3D_kor6q")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+attributes = ExtResource("2_tl88n")
 current = true
 
 [node name="Hand" parent="Camera3D" instance=ExtResource("2_7yov5")]
