@@ -1,16 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1p7gmlqjxlc1"]
+[gd_scene load_steps=4 format=3 uid="uid://c1p7gmlqjxlc1"]
 
 [ext_resource type="PackedScene" uid="uid://0pkm6satjbqm" path="res://Assets/Meshes/Tripod.blend" id="1_ogpsn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fn2xh"]
+rough = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oti5m"]
 radius = 0.147075
 height = 1.5
 
-[node name="Tripod" type="StaticBody3D" groups=["Pickup"]]
+[node name="Tripod" type="RigidBody3D" groups=["Pickup"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_fn2xh")
+linear_damp = 50.0
+angular_damp = 50.0
 
 [node name="Tripod2" parent="." instance=ExtResource("1_ogpsn")]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0, 0, 0)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0, -1, 0)
+
+[node name="Tripod" parent="Tripod2" index="0"]
+gi_mode = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784491, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.215509, 0)
 shape = SubResource("CapsuleShape3D_oti5m")
+
+[editable path="Tripod2"]

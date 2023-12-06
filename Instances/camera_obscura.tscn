@@ -27,7 +27,32 @@ shape = SubResource("SphereShape3D_nlahj")
 [node name="CameraObscura" parent="." instance=ExtResource("1_f4u4m")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
+[node name="Bellows" parent="CameraObscura" index="0"]
+gi_mode = 0
+
+[node name="Lens" parent="CameraObscura" index="1"]
+gi_mode = 0
+
+[node name="Case" parent="CameraObscura" index="2"]
+gi_mode = 0
+
+[node name="Base" parent="CameraObscura" index="3"]
+gi_mode = 0
+
+[node name="Arms" parent="CameraObscura" index="4"]
+gi_mode = 0
+
+[node name="Front" parent="CameraObscura" index="5"]
+gi_mode = 0
+
+[node name="Rails" parent="CameraObscura" index="6"]
+gi_mode = 0
+
+[node name="Handle" parent="CameraObscura" index="7"]
+gi_mode = 0
+
 [node name="Bulb" parent="CameraObscura" index="8"]
+gi_mode = 0
 surface_material_override/1 = ExtResource("3_1vye4")
 
 [node name="SubViewport" type="SubViewport" parent="."]

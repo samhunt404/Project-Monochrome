@@ -21,13 +21,12 @@ var inputDisabled = false
 
 #variables for pickup
 @onready var trigger = $GrabbableArea
-@onready var hand = $SpringArm3D/Hand
+@onready var hand : Generic6DOFJoint3D = $Camera3D/HandJoint
 
 @onready var handManipulator = $Camera3D/Hand
 var grabTarget
 
 var film : Photo
-
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -64,12 +63,14 @@ func _input(event):
 	
 	if event.is_action_pressed("Action_Grab"):
 		if grabTarget != null:
+			hand.node_b = NodePath("")
 			grabTarget = null
 			_resetDoors()
 		else:
 			for o in trigger.get_overlapping_bodies():
 				if o.is_in_group("Pickup"):
 					grabTarget = o
+					hand.node_b = grabTarget.get_path()
 					_resetDoors()
 	
 	if event.is_action_pressed("Action_Take"):
@@ -90,12 +91,6 @@ func _input(event):
 				var target = o.owner
 				if target is CameraObscura:
 					target._take_picture()
-
-
-func _process(_delta):
-	if grabTarget != null:
-		grabTarget.global_position = lerp(grabTarget.global_position,hand.global_position,0.25)
-		grabTarget.global_rotation.y = lerp_angle(grabTarget.global_rotation.y,hand.global_rotation.y,0.25)
 
 func _resetDoors():
 	for d in get_tree().get_nodes_in_group("Door"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cm0eerihpdhsi"]
+[gd_scene load_steps=37 format=3 uid="uid://cm0eerihpdhsi"]
 
 [ext_resource type="Script" path="res://Scripts/Level1FalseWall.gd" id="1_3jqen"]
 [ext_resource type="Texture2D" uid="uid://6dmqlqxaepqm" path="res://Assets/Meshes/textures/Marble.png" id="1_4m067"]
@@ -10,9 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://dj3044kt2h0oy" path="res://Instances/camera_obscura.tscn" id="7_mkv5k"]
 [ext_resource type="PackedScene" uid="uid://bb4o8fp38n3ll" path="res://Instances/lever.tscn" id="8_bego7"]
 [ext_resource type="PackedScene" uid="uid://da8mynqcalof0" path="res://Instances/canvas.tscn" id="9_rbxxk"]
-[ext_resource type="Texture2D" uid="uid://dt3e4f5duhkrt" path="res://Assets/Textures/StaryNightProjection.png" id="10_lsguh"]
 [ext_resource type="Material" uid="uid://dh23ahmet8tqm" path="res://Materials/WoodFrame.tres" id="11_qjb5u"]
-[ext_resource type="Texture2D" uid="uid://cy671digv3p4s" path="res://Assets/Textures/MonaLisaProjection.png" id="12_5owhf"]
+[ext_resource type="Texture2D" uid="uid://c7r5isp4k8fw4" path="res://Assets/Textures/MonaLisaLowRes.png" id="11_y6vdn"]
+[ext_resource type="Texture2D" uid="uid://dqdlblg0m2lnu" path="res://Assets/Textures/StaryNightLowRes.png" id="12_a8lod"]
+[ext_resource type="Texture2D" uid="uid://cufjjvkvw5hxs" path="res://Assets/Textures/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg" id="14_t2p61"]
+[ext_resource type="Texture2D" uid="uid://bcdvk2p1heqlh" path="res://Assets/Textures/StaryNight.png" id="15_hm0p8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjwlq"]
 resource_name = "Base"
@@ -214,20 +216,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 1, 0)]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Starry Night")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_start_compare_imgs"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_au0ir"]
 tracks/0/type = "value"
@@ -282,19 +270,13 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a8bq0")
 
 [sub_resource type="QuadMesh" id="QuadMesh_hvogv"]
-size = Vector2(2.5, 2.5)
+size = Vector2(1.333, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n64fd"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("10_lsguh")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plwir"]
+albedo_texture = ExtResource("14_t2p61")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbvqv"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("12_5owhf")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2l334"]
+albedo_texture = ExtResource("15_hm0p8")
 
 [sub_resource type="BoxMesh" id="BoxMesh_nexrp"]
 
@@ -351,16 +333,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 [node name="Lever" parent="." instance=ExtResource("8_bego7")]
 transform = Transform3D(0.0282356, 0, 0.999601, 0, 1, 0, -0.999601, 0, 0.0282356, 1.78237, 1.1921e-07, 3.88946)
 
-[node name="Starry Night" parent="." instance=ExtResource("9_rbxxk")]
-transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, 3.5, 1.7, 7.274)
-targetTexture = ExtResource("10_lsguh")
-doorToOpen = NodePath("../Doors")
-
-[node name="Mona Lisa" parent="." instance=ExtResource("9_rbxxk")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.249091, 1.7, 5.259)
-targetTexture = ExtResource("12_5owhf")
+[node name="Canvas_Mona_Lisa" parent="." instance=ExtResource("9_rbxxk")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.249091, 1.7, 5.21058)
+targetTexture = ExtResource("11_y6vdn")
 doorToOpen = NodePath("../Level")
 lever = NodePath("../Lever")
+
+[node name="Canvas_Stary_Night" parent="." instance=ExtResource("9_rbxxk")]
+transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 3.43654, 1.7, 7.17345)
+targetTexture = ExtResource("12_a8lod")
+doorToOpen = NodePath("../Doors")
+lever = NodePath("../Lever")
+debugSaveImgs = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-2.25767e-09, -1, -6.1776e-08, 0.73246, -4.37114e-08, 0.68081, -0.68081, -4.37114e-08, 0.73246, -2.91474, 3.29759, -3.92276)
@@ -375,22 +359,22 @@ transform = Transform3D(0.68081, 8.74228e-08, -0.73246, 0.73246, -4.37114e-08, 0
 light_energy = 4.304
 
 [node name="RefPainting" type="Node3D" parent="."]
-transform = Transform3D(-2.91118e-08, -0.666, 2.91118e-08, 0, -2.91118e-08, -0.666, 0.666, -2.91118e-08, 1.27252e-15, -2.74091, 1.7, -5.731)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.166578, 1.7, -5.731)
 
-[node name="Painting" type="Node3D" parent="RefPainting"]
+[node name="Frame" type="Node3D" parent="RefPainting"]
 
-[node name="Frame" type="MeshInstance3D" parent="RefPainting/Painting"]
+[node name="Frame" type="MeshInstance3D" parent="RefPainting/Frame"]
 material_override = ExtResource("11_qjb5u")
 mesh = SubResource("ArrayMesh_ldsp4")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RefPainting"]
-transform = Transform3D(-4.37114e-08, 3.55271e-15, 1, -5.19474e-15, 1, -3.55271e-15, -1, -3.55271e-15, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, -7.17753e-23, 1, -1.64203e-15, 1, -6.31089e-30, -1, -1.64203e-15, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_hvogv")
-surface_material_override/0 = SubResource("StandardMaterial3D_n64fd")
+surface_material_override/0 = SubResource("StandardMaterial3D_plwir")
 
 [node name="RefPainting2" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.7, -5.731)
+transform = Transform3D(-2.95052e-08, -0.675, 2.95052e-08, 0, -2.95052e-08, -0.675, 0.675, -2.95052e-08, 1.28971e-15, -2.84748, 1.7, -5.731)
 
 [node name="Frame" type="Node3D" parent="RefPainting2"]
 
@@ -402,7 +386,7 @@ skeleton = NodePath("")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RefPainting2"]
 transform = Transform3D(-4.37114e-08, -7.17753e-23, 1, -1.64203e-15, 1, -6.31089e-30, -1, -1.64203e-15, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_hvogv")
-surface_material_override/0 = SubResource("StandardMaterial3D_hbvqv")
+surface_material_override/0 = SubResource("StandardMaterial3D_2l334")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.8234, 0, 0, 0, 0.89283, 0.450395, 0, -0.450395, 0.89283, 3.44652, -0.29646, 4.96258)

@@ -18,23 +18,25 @@ shape = SubResource("CapsuleShape3D_kor6q")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+cull_mask = 1048559
 attributes = ExtResource("2_tl88n")
 current = true
 
 [node name="Hand" parent="Camera3D" instance=ExtResource("2_7yov5")]
 transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0.481, -0.293, -0.364)
 
+[node name="HandJoint" type="Generic6DOFJoint3D" parent="Camera3D"]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0.481, -0.293, -0.364)
+node_a = NodePath("../..")
+linear_spring_x/enabled = true
+linear_spring_y/enabled = true
+linear_spring_z/enabled = true
+
 [node name="GrabbableArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrabbableArea"]
 shape = SubResource("BoxShape3D_lfdck")
-
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0, 0)
-
-[node name="Hand" type="Node3D" parent="SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.74228e-08, 0, 1)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.367385, 1.87183, 0.165202)

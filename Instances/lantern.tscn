@@ -12,6 +12,9 @@ script = ExtResource("1_712e8")
 [node name="MagicLantern" parent="." instance=ExtResource("1_waaqc")]
 transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, 0, 0)
 
+[node name="MagicLantern" parent="MagicLantern" index="0"]
+gi_mode = 2
+
 [node name="Bulb" parent="MagicLantern" index="1"]
 surface_material_override/1 = ExtResource("3_1v5fl")
 
@@ -23,6 +26,7 @@ light_size = 0.54
 shadow_enabled = true
 distance_fade_enabled = true
 spot_range = 10.0
+spot_angle_attenuation = 0.0161761
 
 [node name="Area3D" type="Area3D" parent="." groups=["ManipTrigger"]]
 

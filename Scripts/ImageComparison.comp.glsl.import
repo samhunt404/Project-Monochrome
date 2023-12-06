@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dske7jpmki2un"
+path="res://.godot/imported/ImageComparison.comp.glsl-a6495724d3581df4e9153d1c063d1660.res"
+
+[deps]
+
+source_file="res://Scripts/ImageComparison.comp.glsl"
+dest_files=["res://.godot/imported/ImageComparison.comp.glsl-a6495724d3581df4e9153d1c063d1660.res"]
+
+[params]
+

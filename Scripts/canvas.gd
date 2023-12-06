@@ -1,8 +1,10 @@
 extends Node3D
 
-@export var targetTexture : Texture
+@export var targetTexture : Texture2D
 @export var doorToOpen : NodePath
 @export var lever : NodePath
+@export var sens : int = 400
+@export var debugSaveImgs : bool = false
 var leverInst
 var door
 
@@ -11,57 +13,49 @@ var door
 @onready var poopMesh := $MeshInstance3D
 
 var viewTex : ViewportTexture
-var compareThread : Thread
+var imgCount : int = 0
 
 
 func _ready():
+	
+	
 	if(lever != NodePath("")):
 		leverInst = get_node(lever)
 		leverInst.connect("LeverFired",_start_compare_imgs)
 	if(doorToOpen != null):
 		door = get_node(doorToOpen)
-	compareThread = Thread.new()
+	
+	await RenderingServer.frame_post_draw
+	print(viewport.get_texture())
 	viewTex = viewport.get_texture()
 	var mat := StandardMaterial3D.new()
 	mat.albedo_texture = viewport.get_texture()
 	poopMesh.material_override = mat
 
 func _start_compare_imgs():
-	if(compareThread.is_started()):
-		compareThread.wait_to_finish()
-	if(not compareThread.is_alive()):
-		compareThread.start(compare_images)
-
-func compare_images():
+	
 	var image: Image = targetTexture.get_image()
 	var compareImage: Image = viewTex.get_image()
 	
 	image.decompress()
 	compareImage.decompress()
 	
-	var pixelThreshold := 0.5
+	var ratio = 256.0 / float(targetTexture.get_height())
+	image.resize(targetTexture.get_width() * ratio, 256);
+	@warning_ignore("integer_division")
+	var targRect = Rect2i(Vector2i((256 - image.get_width())/2,0),Vector2i(image.get_width(),image.get_height()))
+	var resizedCompare = Image.create(image.get_width(),image.get_height(),false,compareImage.get_format())
+	resizedCompare.blit_rect(compareImage,targRect,Vector2i(0,0))
 	
-	var diff : int = 0
-	var percentdiff := 0.0
+	if(debugSaveImgs):
+		image.save_png("res://Data/RefImage" + name + str(imgCount) +".png")
+		resizedCompare.save_png("res://Data/CompImage" + name + str(imgCount) +".png")
 	
-	var xMax : int = image.get_size().x
-	var yMax : int = image.get_size().y
+	imgCount += 1
 	
-	for i in range(0,xMax * yMax):
-		var x : int = i % xMax
-		@warning_ignore("integer_division")
-		var y : int = i / yMax
-		var colorA := Vector3(image.get_pixel(x,y).r,image.get_pixel(x,y).g,image.get_pixel(x,y).b)
-		var colorB := Vector3(compareImage.get_pixel(x,y).r,compareImage.get_pixel(x,y).g,compareImage.get_pixel(x,y).b)
-		if (colorA - colorB).length() > pixelThreshold:
-			diff += 1
+	var difference = image.compute_image_metrics(resizedCompare,true)
 	
-	percentdiff = diff / float(xMax * yMax)
-	print(percentdiff)
-	if(percentdiff < 0.75):
+	
+	if(difference["mean_squared"] < sens):
 		door.call_thread_safe("_perma_open")
-	
-	
-
-func _exit_tree():
-	compareThread.wait_to_finish()
+	print(difference["mean_squared"])

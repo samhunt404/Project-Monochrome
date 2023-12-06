@@ -26,7 +26,7 @@ func _ready():
 		
 	given.connect(_updateFilmIndicator)
 	taken.connect(_updateFilmIndicator)
-
+	
 	await RenderingServer.frame_post_draw
 	texture = viewport.get_texture()
 	#set viewfinder from script so godot doesn't break

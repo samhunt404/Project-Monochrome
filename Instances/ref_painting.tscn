@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkqgau2y3b76n"]
+[gd_scene load_steps=6 format=3 uid="uid://bkqgau2y3b76n"]
 
 [ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes/Painting.blend" id="1_ggdq0"]
+[ext_resource type="Material" uid="uid://dh23ahmet8tqm" path="res://Materials/WoodFrame.tres" id="2_a2sbf"]
 [ext_resource type="Texture2D" uid="uid://dt3e4f5duhkrt" path="res://Assets/Textures/StaryNightProjection.png" id="2_fwwlm"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_hvogv"]
@@ -16,7 +17,12 @@ albedo_texture = ExtResource("2_fwwlm")
 
 [node name="Painting" parent="." instance=ExtResource("1_ggdq0")]
 
+[node name="Frame" parent="Painting" index="0"]
+surface_material_override/0 = ExtResource("2_a2sbf")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_hvogv")
 surface_material_override/0 = SubResource("StandardMaterial3D_a8ahx")
+
+[editable path="Painting"]

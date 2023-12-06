@@ -9,11 +9,9 @@ extends Node3D
 signal LeverFired
 
 
-func _input(event):
-	if(event.is_action_pressed("Action_Interact") and trigger.overlaps_body(player)):
+func _unhandled_input(event):
+	if(event.is_action_pressed("Action_Interact") and trigger.overlaps_body(player) and not animPlayer.is_playing()):
 		_activate()
-
 func _activate():
-	if(!animPlayer.is_playing()):
-		animPlayer.play("LeverAction")
-		LeverFired.emit()
+	animPlayer.play("LeverAction")
+	LeverFired.emit()

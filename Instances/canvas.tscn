@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://da8mynqcalof0"]
+[gd_scene load_steps=11 format=3 uid="uid://da8mynqcalof0"]
 
 [ext_resource type="Script" path="res://Scripts/canvas.gd" id="1_euslb"]
 [ext_resource type="Material" uid="uid://ktawykf514eb" path="res://Materials/BlueWood.tres" id="2_u4sji"]
@@ -41,10 +41,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a8bq0")
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_23l4n"]
-auto_exposure_enabled = true
-auto_exposure_speed = 64.0
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_rwn08"]
 viewport_path = NodePath("SubViewport")
 
@@ -71,19 +67,19 @@ mesh = SubResource("ArrayMesh_ldsp4")
 skeleton = NodePath("")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(1024, 1024)
+debug_draw = 2
+size = Vector2i(256, 256)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.132906)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.12083)
 cull_mask = 16
-attributes = SubResource("CameraAttributesPractical_23l4n")
 projection = 1
 fov = 37.8493
-size = 2.5
+size = 2.0
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.132906)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.12083)
 remote_path = NodePath("../SubViewport/Camera3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

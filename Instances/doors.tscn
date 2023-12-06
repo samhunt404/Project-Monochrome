@@ -12,19 +12,19 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Door2:rotation")
+tracks/0/path = NodePath("LeftDoorRoot:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, -1.5708, 0), Vector3(0, -3.14159, 0)]
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Door:rotation")
+tracks/1/path = NodePath("RightDoorRoot:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -39,19 +39,19 @@ resource_name = "Open"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Door2:rotation")
+tracks/0/path = NodePath("LeftDoorRoot:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, -3.14159, 0), Vector3(0, -1.5708, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Door:rotation")
+tracks/1/path = NodePath("RightDoorRoot:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -67,26 +67,26 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Door2:rotation")
+tracks/0/path = NodePath("RightDoorRoot:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 3.4, 4),
+"times": PackedFloat32Array(0, 0.5, 3, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, -3.14159, 0), Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0, -3.14159, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Door:rotation")
+tracks/1/path = NodePath("LeftDoorRoot:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 3.4, 4),
+"times": PackedFloat32Array(0, 0.5, 3, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pep74"]
@@ -94,19 +94,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Door2:rotation")
+tracks/0/path = NodePath("RightDoorRoot:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -3.14159, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Door:rotation")
+tracks/1/path = NodePath("LeftDoorRoot:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -130,21 +130,27 @@ size = Vector3(1, 3.08675, 3.02999)
 [node name="Doors" type="Node3D" groups=["Door"]]
 script = ExtResource("1_kjr0x")
 
-[node name="Door" parent="." instance=ExtResource("1_3wq5l")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 1.5)
+[node name="LeftDoorRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Door"]
+[node name="Door2" parent="LeftDoorRoot" instance=ExtResource("1_3wq5l")]
+transform = Transform3D(-0.75, 0, -1.90139e-06, 0, 0.75, 0, 1.90139e-06, 0, -0.75, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LeftDoorRoot/Door2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftDoorRoot/Door2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
 shape = SubResource("BoxShape3D_p5oig")
 
-[node name="Door2" parent="." instance=ExtResource("1_3wq5l")]
-transform = Transform3D(-0.75, 0, -1.90139e-06, 0, 0.75, 0, 1.90139e-06, 0, -0.75, 0, 0, -1.5)
+[node name="RightDoorRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Door2"]
+[node name="Door" parent="RightDoorRoot" instance=ExtResource("1_3wq5l")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door2/StaticBody3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="RightDoorRoot/Door"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightDoorRoot/Door/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
 shape = SubResource("BoxShape3D_p5oig")
 
