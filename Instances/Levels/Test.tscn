@@ -150,8 +150,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126544, -0.00162669, -4.95
 
 [editable path="Canvas"]
 [editable path="Doors"]
-[editable path="Doors/Door"]
-[editable path="Doors/Door2"]
 [editable path="Doors2"]
-[editable path="Doors2/Door"]
-[editable path="Doors2/Door2"]

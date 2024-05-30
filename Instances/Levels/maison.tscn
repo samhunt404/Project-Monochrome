@@ -1,36 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnsshg5yh3qh8"]
+[gd_scene load_steps=4 format=3 uid="uid://bnsshg5yh3qh8"]
 
 [ext_resource type="Environment" uid="uid://cedlly03opqw7" path="res://Instances/Resources/Environment.tres" id="2_j01bc"]
 [ext_resource type="PackedScene" uid="uid://btnws7h7c4enk" path="res://Instances/player.tscn" id="3_8ic7i"]
-[ext_resource type="PackedScene" uid="uid://dmnaipovbyltg" path="res://Instances/doors.tscn" id="5_ogp5l"]
-[ext_resource type="PackedScene" uid="uid://c1p7gmlqjxlc1" path="res://Instances/tripod.tscn" id="8_0n11n"]
-[ext_resource type="PackedScene" uid="uid://cjhfrr4hak2bg" path="res://Instances/lantern.tscn" id="8_lfqtk"]
-[ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes/Painting.blend" id="10_1iw7r"]
-[ext_resource type="Material" uid="uid://dh23ahmet8tqm" path="res://Materials/WoodFrame.tres" id="11_5nx3v"]
-[ext_resource type="Texture2D" uid="uid://b6qvjmbh51pai" path="res://Assets/Textures/AppolloBase.jpg" id="12_od86d"]
-[ext_resource type="PackedScene" uid="uid://dj3044kt2h0oy" path="res://Instances/camera_obscura.tscn" id="13_k6nnc"]
-[ext_resource type="PackedScene" uid="uid://da8mynqcalof0" path="res://Instances/canvas.tscn" id="14_qn8oh"]
-[ext_resource type="PackedScene" uid="uid://bb4o8fp38n3ll" path="res://Instances/lever.tscn" id="16_spd41"]
 
 [sub_resource type="FogMaterial" id="FogMaterial_054be"]
 density = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_letlc"]
-albedo_texture = ExtResource("12_od86d")
-
-[sub_resource type="QuadMesh" id="QuadMesh_ptn8l"]
-size = Vector2(1.617, 2)
-
-[sub_resource type="QuadMesh" id="QuadMesh_eu0pr"]
-resource_local_to_scene = true
-size = Vector2(1.333, 2)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_7sf7u"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5w1n"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_7sf7u")
 
 [node name="Maison" type="Node3D"]
 
@@ -42,84 +16,5 @@ material = SubResource("FogMaterial_054be")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_j01bc")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(0.804549, 0.159371, -0.572103, -0.0751238, 0.982893, 0.168159, 0.589116, -0.0923138, 0.802758, -3.60882, 6.47949, 10.6431)
-light_color = Color(0.670588, 0.85098, 0.627451, 1)
-light_energy = 12.0
-light_size = 1.0
-shadow_enabled = true
-spot_range = 43.785
-spot_angle = 16.91
-
 [node name="Player" parent="." instance=ExtResource("3_8ic7i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
-
-[node name="Tripod" parent="." instance=ExtResource("8_0n11n")]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0.587212, 1.01671, 0.825608)
-
-[node name="Lantern" parent="Tripod" instance=ExtResource("8_lfqtk")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.7, 0)
-
-[node name="RefPainting" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.123, 1.7, -2.3)
-
-[node name="Painting" parent="RefPainting" instance=ExtResource("10_1iw7r")]
-
-[node name="Frame" parent="RefPainting/Painting" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.244, 0, 0, 0)
-surface_material_override/0 = ExtResource("11_5nx3v")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RefPainting"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_letlc")
-mesh = SubResource("QuadMesh_ptn8l")
-
-[node name="Tripod2" parent="." instance=ExtResource("8_0n11n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15077, 1, 0.825777)
-
-[node name="CameraObscura" parent="Tripod2" instance=ExtResource("13_k6nnc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
-
-[node name="CanvasApollo" parent="." instance=ExtResource("14_qn8oh")]
-transform = Transform3D(1, 0, 0, 0, 0.804, 0, 0, 0, 0.804, 0.028, 1.64598, -1.37365)
-targetTexture = ExtResource("12_od86d")
-doorToOpen = NodePath("../ExitDoors")
-lever = NodePath("../Lever")
-
-[node name="CanvasMesh" parent="CanvasApollo" index="0"]
-mesh = SubResource("QuadMesh_eu0pr")
-
-[node name="Camera3D" parent="CanvasApollo/SubViewport" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.804, 0, 0, 0, 0.804, 0.028, 1.64598, -0.472503)
-size = 1.617
-
-[node name="MeshInstance3D" parent="CanvasApollo" index="4"]
-material_override = SubResource("StandardMaterial3D_q5w1n")
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -10.0294, 3.23979, -0.31028)
-light_energy = 1.97
-light_size = 0.25
-
-[node name="ExitDoors" parent="." instance=ExtResource("5_ogp5l")]
-transform = Transform3D(-3.91217e-08, 0, 0.895, 0, 0.895, 0, -0.895, 0, -3.91217e-08, 0, 3.075, -9.91761)
-playerOpenable = false
-
-[node name="LeftDoorRoot" parent="ExitDoors" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.489683, 0, -2.41513)
-
-[node name="Door2" parent="ExitDoors/LeftDoorRoot" index="0"]
-transform = Transform3D(-0.693299, 0, -0.286071, 0, 0.75, 0, 0.286071, 0, -0.693299, 0, 0, 0)
-
-[node name="RightDoorRoot" parent="ExitDoors" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.487876, 0, 2.4499)
-
-[node name="Door" parent="ExitDoors/RightDoorRoot" index="0"]
-transform = Transform3D(0.696243, 0, -0.27883, 0, 0.75, 0, 0.27883, 0, 0.696243, 0, 0, 0)
-
-[node name="Lever" parent="." instance=ExtResource("16_spd41")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0154295, 3.075, -9.31344)
-
-[editable path="RefPainting/Painting"]
-[editable path="CanvasApollo"]
-[editable path="ExitDoors"]

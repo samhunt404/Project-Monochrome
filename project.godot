@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Project Monochrome"
 run/main_scene="res://Instances/Levels/Test.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
+config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://Assets/Textures/Icon.png"
 
 [autoload]
