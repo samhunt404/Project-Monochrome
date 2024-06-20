@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://btnws7h7c4enk"]
+[gd_scene load_steps=7 format=3 uid="uid://btnws7h7c4enk"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_wurc5"]
 [ext_resource type="PackedScene" uid="uid://dwo5gkpueq8xs" path="res://Instances/hand.tscn" id="2_7yov5"]
@@ -8,6 +8,10 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfdck"]
 size = Vector3(1, 2.17911, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7836j"]
+height = 1.5
+radius = 0.6
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_wurc5")
@@ -42,3 +46,9 @@ shape = SubResource("BoxShape3D_lfdck")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.367385, 1.87183, 0.165202)
 light_energy = 0.75
 omni_range = 1.25383
+
+[node name="StairChecker" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StairChecker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("CylinderShape3D_7836j")

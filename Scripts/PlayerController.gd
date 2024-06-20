@@ -22,6 +22,7 @@ var inputDisabled = false
 #variables for pickup
 @onready var trigger = $GrabbableArea
 @onready var hand : Generic6DOFJoint3D = $Camera3D/HandJoint
+@onready var staircast : Area3D = $StairChecker
 
 @onready var handManipulator = $Camera3D/Hand
 var grabTarget
@@ -34,8 +35,8 @@ func _ready():
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y -= gravity * delta
-
+		velocity.y -= gravity * delta # I was under the impression physics update is meant so you don't need delta but idk
+	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("Walk_Left", "Walk_Right", "Walk_Forward", "Walk_Backward")
 	input_dir = Vector2.ZERO if inputDisabled else input_dir #ensure input can be disabled in pause
@@ -47,8 +48,12 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, currSpeed)
 		velocity.z = move_toward(velocity.z, 0, currSpeed)
-
+	#stair logic
+	#note that the collider is always overlapping the player which is why the size must be 1 or lower to climb
+	if(is_on_wall() and staircast.get_overlapping_bodies().size() <= 1): #test if we're on a wall small enough to 'climb'
+		velocity.y += gravity * 1.25 * delta
 	move_and_slide()
+	
 
 func _input(event):
 	if event is InputEventMouseMotion and not inputDisabled:
