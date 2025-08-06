@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://btnws7h7c4enk"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_wurc5"]
+[ext_resource type="Script" uid="uid://21vv467hvnxq" path="res://Scripts/PlayerController.gd" id="1_wurc5"]
 [ext_resource type="PackedScene" uid="uid://dwo5gkpueq8xs" path="res://Instances/hand.tscn" id="2_7yov5"]
 [ext_resource type="CameraAttributesPractical" uid="uid://dlwllga3rgiro" path="res://Instances/Resources/MainCameraAttributes.tres" id="2_tl88n"]
 

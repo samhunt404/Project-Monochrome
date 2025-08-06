@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cp0bobvkhjd5h"]
 
-[ext_resource type="Script" path="res://Scripts/doors.gd" id="1_d6wdh"]
+[ext_resource type="Script" uid="uid://bwqbom5fml1gi" path="res://Scripts/doors.gd" id="1_d6wdh"]
 [ext_resource type="PackedScene" uid="uid://bn63sk3yyt86t" path="res://Assets/Meshes/Door.blend" id="2_sg6to"]
 
 [sub_resource type="Animation" id="Animation_fba4v"]
@@ -67,10 +67,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6rs2v"]
 _data = {
-"Close": SubResource("Animation_fba4v"),
-"Open": SubResource("Animation_bnbyq"),
-"Open_Close": SubResource("Animation_inkj3"),
-"RESET": SubResource("Animation_pep74")
+&"Close": SubResource("Animation_fba4v"),
+&"Open": SubResource("Animation_bnbyq"),
+&"Open_Close": SubResource("Animation_inkj3"),
+&"RESET": SubResource("Animation_pep74")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n2ver"]
@@ -87,7 +87,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6rs2v")
+&"": SubResource("AnimationLibrary_6rs2v")
 }
 
 [node name="Area3D" type="Area3D" parent="."]

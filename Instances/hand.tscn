@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwo5gkpueq8xs"]
 
 [ext_resource type="PackedScene" uid="uid://ybyx4mdko75w" path="res://Assets/Meshes/Hand.blend" id="1_dmyno"]
-[ext_resource type="Script" path="res://Scripts/Hand.gd" id="1_n213o"]
+[ext_resource type="Script" uid="uid://c3u68j888ulr7" path="res://Scripts/Hand.gd" id="1_n213o"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_vaq7m"]
 size = Vector2(0.1, 0.1)

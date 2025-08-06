@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkqy6xg4nm0d3"]
 
-[ext_resource type="Script" path="res://Scripts/shadow_maker.gd" id="1_ose5b"]
-[ext_resource type="Shader" path="res://Scripts/shadow_maker.gdshader" id="2_irsng"]
+[ext_resource type="Script" uid="uid://cb5115rc8j85g" path="res://Scripts/shadow_maker.gd" id="1_ose5b"]
+[ext_resource type="Shader" uid="uid://kdqisq6uify5" path="res://Scripts/shadow_maker.gdshader" id="2_irsng"]
 [ext_resource type="Texture2D" uid="uid://b63cdx3nwec8c" path="res://Assets/Textures/debugNoise.png" id="3_h1wox"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gtpeu"]

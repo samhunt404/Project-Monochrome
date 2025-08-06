@@ -1,6 +1,6 @@
 [gd_scene load_steps=37 format=4 uid="uid://cm0eerihpdhsi"]
 
-[ext_resource type="Script" path="res://Scripts/Level1FalseWall.gd" id="1_3jqen"]
+[ext_resource type="Script" uid="uid://bhbrrj8pi48qc" path="res://Scripts/Level1FalseWall.gd" id="1_3jqen"]
 [ext_resource type="Texture2D" uid="uid://6dmqlqxaepqm" path="res://Assets/Meshes/textures/Marble.png" id="1_4m067"]
 [ext_resource type="PackedScene" uid="uid://btnws7h7c4enk" path="res://Instances/player.tscn" id="3_bd6ex"]
 [ext_resource type="Environment" uid="uid://cedlly03opqw7" path="res://Instances/Resources/Environment.tres" id="3_mg5po"]
@@ -245,8 +245,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lxtmg"]
 _data = {
-"FakeWallOpen": SubResource("Animation_8p4vf"),
-"RESET": SubResource("Animation_au0ir")
+&"FakeWallOpen": SubResource("Animation_8p4vf"),
+&"RESET": SubResource("Animation_au0ir")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j406p"]
@@ -319,7 +319,7 @@ skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level"]
 libraries = {
-"": SubResource("AnimationLibrary_lxtmg")
+&"": SubResource("AnimationLibrary_lxtmg")
 }
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
