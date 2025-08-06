@@ -7,6 +7,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_3gah3"]
 
 [node name="Lantern" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667, 0)
 script = ExtResource("1_712e8")
 
 [node name="MagicLantern" parent="." instance=ExtResource("1_waaqc")]
