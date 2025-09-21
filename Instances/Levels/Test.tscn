@@ -1,14 +1,14 @@
 [gd_scene load_steps=18 format=3 uid="uid://bik8syx83i4pj"]
 
 [ext_resource type="PackedScene" uid="uid://btnws7h7c4enk" path="res://Instances/player.tscn" id="1_p1rbe"]
-[ext_resource type="PackedScene" uid="uid://cjhfrr4hak2bg" path="res://Instances/lantern.tscn" id="3_1531w"]
-[ext_resource type="PackedScene" uid="uid://c1p7gmlqjxlc1" path="res://Instances/tripod.tscn" id="4_uv3j6"]
-[ext_resource type="PackedScene" uid="uid://dj3044kt2h0oy" path="res://Instances/camera_obscura.tscn" id="5_b2b05"]
+[ext_resource type="PackedScene" uid="uid://cjhfrr4hak2bg" path="res://Instances/LevelPieces/lantern.tscn" id="3_1531w"]
+[ext_resource type="PackedScene" uid="uid://c1p7gmlqjxlc1" path="res://Instances/LevelPieces/tripod.tscn" id="4_uv3j6"]
+[ext_resource type="PackedScene" uid="uid://dj3044kt2h0oy" path="res://Instances/LevelPieces/camera_obscura.tscn" id="5_b2b05"]
 [ext_resource type="Texture2D" uid="uid://cy671digv3p4s" path="res://Assets/Textures/MonaLisaProjection.png" id="5_tbugb"]
-[ext_resource type="PackedScene" uid="uid://da8mynqcalof0" path="res://Instances/canvas.tscn" id="7_mxprf"]
-[ext_resource type="PackedScene" uid="uid://dmnaipovbyltg" path="res://Instances/doors.tscn" id="7_nfjie"]
+[ext_resource type="PackedScene" uid="uid://da8mynqcalof0" path="res://Instances/LevelPieces/canvas.tscn" id="7_mxprf"]
+[ext_resource type="PackedScene" uid="uid://dmnaipovbyltg" path="res://Instances/LevelPieces/DoubleDoor.tscn" id="7_nfjie"]
 [ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes/Painting.blend" id="8_oxwb5"]
-[ext_resource type="PackedScene" uid="uid://bb4o8fp38n3ll" path="res://Instances/lever.tscn" id="9_oqnas"]
+[ext_resource type="PackedScene" uid="uid://bb4o8fp38n3ll" path="res://Instances/LevelPieces/lever.tscn" id="9_oqnas"]
 
 [sub_resource type="Environment" id="Environment_ad0lv"]
 background_mode = 1
@@ -82,16 +82,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("ConvexPolygonShape3D_74y1o")
 
 [node name="Tripod" parent="." instance=ExtResource("4_uv3j6")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -2)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, -2)
 
 [node name="Lantern" parent="Tripod" instance=ExtResource("3_1531w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Tripod2" parent="." instance=ExtResource("4_uv3j6")]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 6.46235, 4.76837e-07, -0.728517)
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 6.46235, 1, -0.728517)
 
 [node name="CameraObscura" parent="Tripod2" instance=ExtResource("5_b2b05")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667, 0)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03742, 2.05587, -10.693)
@@ -123,7 +122,7 @@ lever = NodePath("../Lever")
 mesh = SubResource("QuadMesh_civ7w")
 
 [node name="Camera3D" parent="Canvas/SubViewport" index="0"]
-transform = Transform3D(0.999997, 0, 5.68434e-14, 0, 0.999997, 0, -5.68434e-14, 0, 0.999997, -3.17259, 1.6, -10.0405)
+transform = Transform3D(0.999997, 0, 5.68434e-14, 0, 0.999997, 0, -5.68434e-14, 0, 0.999997, -3.17259, 1.6, -9.05257)
 
 [node name="MeshInstance3D" parent="Canvas" index="4"]
 material_override = SubResource("StandardMaterial3D_6myyt")

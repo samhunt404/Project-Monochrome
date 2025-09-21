@@ -7,6 +7,8 @@ var hasFilm := false
 #the film object
 var film : Photo
 #signal for when given film
+@warning_ignore("unused_signal")
 signal given
 #signal for when film is taken
+@warning_ignore("unused_signal")
 signal taken
