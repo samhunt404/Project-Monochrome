@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dj3044kt2h0oy"]
 
-[ext_resource type="Script" path="res://Scripts/camera_obscura.gd" id="1_06vno"]
+[ext_resource type="Script" uid="uid://cpn6k4md2m0f1" path="res://Scripts/camera_obscura.gd" id="1_06vno"]
 [ext_resource type="PackedScene" uid="uid://chlqowdf51gqy" path="res://Assets/Meshes/CameraObscura.blend" id="1_f4u4m"]
 [ext_resource type="Material" uid="uid://r5w6oibputdg" path="res://Materials/Bulb_dim.tres" id="3_1vye4"]
 

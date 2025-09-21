@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjhfrr4hak2bg"]
 
-[ext_resource type="Script" path="res://Scripts/Lantern.gd" id="1_712e8"]
+[ext_resource type="Script" uid="uid://bf5omqfeag8p" path="res://Scripts/Lantern.gd" id="1_712e8"]
 [ext_resource type="PackedScene" uid="uid://dyqnfxmxyp3aq" path="res://Assets/Meshes/MagicLantern.blend" id="1_waaqc"]
 [ext_resource type="Material" uid="uid://r5w6oibputdg" path="res://Materials/Bulb_dim.tres" id="3_1v5fl"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmnaipovbyltg"]
 
 [ext_resource type="PackedScene" uid="uid://bc6vwgl7pddpx" path="res://Assets/Meshes/Door.blend" id="1_3wq5l"]
-[ext_resource type="Script" path="res://Scripts/doors.gd" id="1_kjr0x"]
+[ext_resource type="Script" uid="uid://dnlcbg4qq6v1x" path="res://Scripts/doors.gd" id="1_kjr0x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p5oig"]
 size = Vector3(0.237843, 4.02703, 1.99664)
@@ -118,10 +118,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6rs2v"]
 _data = {
-"Close": SubResource("Animation_fba4v"),
-"Open": SubResource("Animation_bnbyq"),
-"Open_Close": SubResource("Animation_inkj3"),
-"RESET": SubResource("Animation_pep74")
+&"Close": SubResource("Animation_fba4v"),
+&"Open": SubResource("Animation_bnbyq"),
+&"Open_Close": SubResource("Animation_inkj3"),
+&"RESET": SubResource("Animation_pep74")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n2ver"]
