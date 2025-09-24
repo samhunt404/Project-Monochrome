@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1p7gmlqjxlc1"]
 
-[ext_resource type="PackedScene" uid="uid://0pkm6satjbqm" path="res://Assets/Meshes/Tripod.blend" id="1_ogpsn"]
+[ext_resource type="PackedScene" uid="uid://0pkm6satjbqm" path="res://Assets/Meshes (blend)/Tripod.blend" id="1_ogpsn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fn2xh"]
 rough = true

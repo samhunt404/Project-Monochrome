@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkqgau2y3b76n"]
 
-[ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes/Painting.blend" id="1_ggdq0"]
+[ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes (blend)/Painting.blend" id="1_ggdq0"]
 [ext_resource type="Material" uid="uid://dh23ahmet8tqm" path="res://Materials/WoodFrame.tres" id="2_a2sbf"]
 [ext_resource type="Texture2D" uid="uid://dt3e4f5duhkrt" path="res://Assets/Textures/StaryNightProjection.png" id="2_fwwlm"]
 

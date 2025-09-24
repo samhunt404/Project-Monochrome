@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://c1p7gmlqjxlc1" path="res://Instances/LevelPieces/tripod.tscn" id="4_uv3j6"]
 [ext_resource type="PackedScene" uid="uid://dj3044kt2h0oy" path="res://Instances/LevelPieces/camera_obscura.tscn" id="5_b2b05"]
 [ext_resource type="Texture2D" uid="uid://cy671digv3p4s" path="res://Assets/Textures/MonaLisaProjection.png" id="5_tbugb"]
-[ext_resource type="PackedScene" uid="uid://da8mynqcalof0" path="res://Instances/LevelPieces/canvas.tscn" id="7_mxprf"]
+[ext_resource type="PackedScene" uid="uid://da8mynqcalof0" path="res://Instances/canvas.tscn" id="7_mxprf"]
 [ext_resource type="PackedScene" uid="uid://dmnaipovbyltg" path="res://Instances/LevelPieces/DoubleDoor.tscn" id="7_nfjie"]
-[ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes/Painting.blend" id="8_oxwb5"]
+[ext_resource type="PackedScene" uid="uid://dam2x7k674whv" path="res://Assets/Meshes (blend)/Painting.blend" id="8_oxwb5"]
 [ext_resource type="PackedScene" uid="uid://bb4o8fp38n3ll" path="res://Instances/LevelPieces/lever.tscn" id="9_oqnas"]
 
 [sub_resource type="Environment" id="Environment_ad0lv"]

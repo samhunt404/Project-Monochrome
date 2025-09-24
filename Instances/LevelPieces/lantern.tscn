@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjhfrr4hak2bg"]
 
 [ext_resource type="Script" uid="uid://bf5omqfeag8p" path="res://Scripts/Lantern.gd" id="1_712e8"]
-[ext_resource type="PackedScene" uid="uid://dyqnfxmxyp3aq" path="res://Assets/Meshes/MagicLantern.blend" id="1_waaqc"]
+[ext_resource type="PackedScene" uid="uid://bpxlaw7pk583l" path="res://Assets/ProtoMeshes/MagicLantern.glb" id="2_4tkka"]
 [ext_resource type="Material" uid="uid://r5w6oibputdg" path="res://Materials/Bulb_dim.tres" id="3_1v5fl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3gah3"]
@@ -9,13 +9,10 @@
 [node name="Lantern" type="Node3D"]
 script = ExtResource("1_712e8")
 
-[node name="MagicLantern" parent="." instance=ExtResource("1_waaqc")]
+[node name="MagicLantern2" parent="." instance=ExtResource("2_4tkka")]
 transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, 0, 0)
 
-[node name="MagicLantern" parent="MagicLantern" index="0"]
-gi_mode = 2
-
-[node name="Bulb" parent="MagicLantern" index="1"]
+[node name="Bulb" parent="MagicLantern2" index="1"]
 surface_material_override/1 = ExtResource("3_1v5fl")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
@@ -33,4 +30,4 @@ spot_angle_attenuation = 0.0161761
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_3gah3")
 
-[editable path="MagicLantern"]
+[editable path="MagicLantern2"]

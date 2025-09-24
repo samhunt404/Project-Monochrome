@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmnaipovbyltg"]
 
-[ext_resource type="PackedScene" uid="uid://bc6vwgl7pddpx" path="res://Assets/Meshes/Door.blend" id="1_3wq5l"]
 [ext_resource type="Script" uid="uid://dnlcbg4qq6v1x" path="res://Scripts/doors.gd" id="1_kjr0x"]
+[ext_resource type="PackedScene" uid="uid://y3jaainjuwoi" path="res://Assets/ProtoMeshes/Door.glb" id="2_nnevw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p5oig"]
-size = Vector3(0.237843, 4.02703, 1.99664)
+size = Vector3(0.237843, 3.0173, 1.47146)
 
 [sub_resource type="Animation" id="Animation_fba4v"]
 resource_name = "Close"
@@ -133,30 +133,32 @@ script = ExtResource("1_kjr0x")
 [node name="LeftDoorRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
-[node name="Door2" parent="LeftDoorRoot" instance=ExtResource("1_3wq5l")]
-transform = Transform3D(-0.75, 0, -1.90139e-06, 0, 0.75, 0, 1.90139e-06, 0, -0.75, 0, 0, 0)
+[node name="Door" parent="LeftDoorRoot" instance=ExtResource("2_nnevw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.75)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LeftDoorRoot/Door2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LeftDoorRoot/Door"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.700043, 0, 3.05999e-08)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftDoorRoot/Door2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftDoorRoot/Door/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42109e-14, 1.49513, -0.737412)
 shape = SubResource("BoxShape3D_p5oig")
 
 [node name="RightDoorRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
 
-[node name="Door" parent="RightDoorRoot" instance=ExtResource("1_3wq5l")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+[node name="Door" parent="RightDoorRoot" instance=ExtResource("2_nnevw")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.75)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="RightDoorRoot/Door"]
+transform = Transform3D(-1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightDoorRoot/Door/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_p5oig")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6rs2v")
+&"": SubResource("AnimationLibrary_6rs2v")
 }
 
 [node name="Area3D" type="Area3D" parent="."]
