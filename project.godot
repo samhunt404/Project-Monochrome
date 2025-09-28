@@ -33,6 +33,10 @@ project/assembly_name="Project Monochrome"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 Walk_Forward={

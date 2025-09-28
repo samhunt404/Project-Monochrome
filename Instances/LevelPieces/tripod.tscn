@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1p7gmlqjxlc1"]
 
-[ext_resource type="PackedScene" uid="uid://0pkm6satjbqm" path="res://Assets/Meshes (blend)/Tripod.blend" id="1_ogpsn"]
+[ext_resource type="PackedScene" uid="uid://b1imjdpcyfmfi" path="res://Assets/ProtoMeshes/Tripod.glb" id="1_rcvc8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fn2xh"]
 rough = true
@@ -17,14 +17,9 @@ physics_material_override = SubResource("PhysicsMaterial_fn2xh")
 linear_damp = 50.0
 angular_damp = 50.0
 
-[node name="Tripod2" parent="." instance=ExtResource("1_ogpsn")]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0, -1, 0)
-
-[node name="Tripod" parent="Tripod2" index="0"]
-gi_mode = 2
+[node name="Tripod2" parent="." instance=ExtResource("1_rcvc8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.215509, 0)
 shape = SubResource("CapsuleShape3D_oti5m")
-
-[editable path="Tripod2"]
