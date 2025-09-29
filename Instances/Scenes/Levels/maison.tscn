@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnsshg5yh3qh8"]
+
+[ext_resource type="Environment" uid="uid://cedlly03opqw7" path="res://Instances/Resources/Environment.tres" id="1_t8wlr"]
+[ext_resource type="PackedScene" uid="uid://btnws7h7c4enk" path="res://Instances/player.tscn" id="2_bv12x"]
+[ext_resource type="PackedScene" uid="uid://c1p7gmlqjxlc1" path="res://Instances/LevelPieces/tripod.tscn" id="3_3mv4i"]
+[ext_resource type="PackedScene" uid="uid://cjhfrr4hak2bg" path="res://Instances/LevelPieces/lantern.tscn" id="4_u8aon"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_yk071"]
+density = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_84ih7"]
+size = Vector2(50, 50)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kdc41"]
+
+[node name="Maison" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_t8wlr")
+
+[node name="Player" parent="." instance=ExtResource("2_bv12x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.73545, -1.03371, -20.2008)
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.7498)
+visible = false
+size = Vector3(100, 10, 100)
+material = SubResource("FogMaterial_yk071")
+
+[node name="Tripod" parent="." instance=ExtResource("3_3mv4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -11)
+
+[node name="Lantern" parent="Tripod" instance=ExtResource("4_u8aon")]
+transform = Transform3D(0.507989, 0, -0.861363, 0, 1, 0, 0.861363, 0, 0.507989, 0, 0.67, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.212365, 0.97719, 0, -0.97719, -0.212365, -7.10414, 1.94877, -16.5035)
+light_energy = 2.86
+light_volumetric_fog_energy = 8.495
+spot_angle = 31.7702
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_84ih7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_kdc41")
+
+[editable path="Tripod"]
+[editable path="Tripod/Tripod2"]

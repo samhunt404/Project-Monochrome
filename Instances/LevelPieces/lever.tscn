@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bb4o8fp38n3ll"]
 
-[ext_resource type="PackedScene" uid="uid://cgja0rj1a2wuf" path="res://Assets/Meshes (blend)/Lever.blend" id="1_he7br"]
+[ext_resource type="PackedScene" uid="uid://ce266na37rokt" path="res://Assets/ProtoMeshes/Lever.glb" id="1_he7br"]
 [ext_resource type="Script" uid="uid://6cm2q15xvrab" path="res://Scripts/lever.gd" id="1_hoeex"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wqg56"]

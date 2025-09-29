@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Project Monochrome"
-run/main_scene="res://Instances/Levels/Test.tscn"
+run/main_scene="uid://d3vm75eecmoty"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://Assets/Textures/Icon.png"
+config/icon="res://Assets/Textures/UI/Icon.png"
 
 [autoload]
 

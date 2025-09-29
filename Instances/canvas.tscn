@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://da8mynqcalof0"]
+[gd_scene load_steps=8 format=3 uid="uid://7d1m0hg7wrgq"]
 
 [ext_resource type="Script" uid="uid://d2mbxi0cp6jqc" path="res://Scripts/canvas.gd" id="1_euslb"]
 [ext_resource type="PackedScene" uid="uid://yg6top2418vo" path="res://Assets/ProtoMeshes/Painting.glb" id="2_wpwuk"]

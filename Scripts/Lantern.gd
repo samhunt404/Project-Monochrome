@@ -3,7 +3,7 @@ extends FilmManipulator
 var dim := preload("res://Materials/Bulb_dim.tres")
 var lit := preload("res://Materials/Bulb_lit.tres")
 
-@onready var bulb = $MagicLantern/Bulb
+@onready var bulb = $MagicLantern/Bulba
 @onready var spotLight := $SpotLight3D
 @onready var player = get_tree().get_nodes_in_group("Player")[0]
 

@@ -5,7 +5,7 @@ var player : Player
 
 
 func _enter_tree():
-	player = get_tree().get_nodes_in_group("Player")[0]	
+	player = get_tree().get_nodes_in_group("Player")[0]
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	player.inputDisabled = true
 

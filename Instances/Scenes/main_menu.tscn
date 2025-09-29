@@ -1,21 +1,29 @@
-[gd_scene format=3 uid="uid://d3vm75eecmoty"]
+[gd_scene load_steps=3 format=3 uid="uid://d3vm75eecmoty"]
+
+[ext_resource type="Theme" uid="uid://c7hcobkxoi4m0" path="res://Assets/ThemeResources/MainMenu.tres" id="1_85a1k"]
+[ext_resource type="StyleBox" uid="uid://ct5fyq1kfr43x" path="res://Assets/ThemeResources/ButtonOutline.tres" id="2_fmox3"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_85a1k")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -35.0
-offset_right = 35.0
+layout_mode = 2
+offset_left = 468.0
+offset_top = 229.0
+offset_right = 713.0
+offset_bottom = 419.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -25,6 +33,27 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "Play"
 
+[node name="Panel" type="Panel" parent="VBoxContainer/Play Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_fmox3")
+
 [node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Options"
+alignment = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_fmox3")

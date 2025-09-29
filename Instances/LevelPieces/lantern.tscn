@@ -9,10 +9,10 @@
 [node name="Lantern" type="Node3D"]
 script = ExtResource("1_712e8")
 
-[node name="MagicLantern2" parent="." instance=ExtResource("2_4tkka")]
+[node name="MagicLantern" parent="." instance=ExtResource("2_4tkka")]
 transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, 0, 0)
 
-[node name="Bulb" parent="MagicLantern2" index="1"]
+[node name="Bulb" parent="MagicLantern" index="1"]
 surface_material_override/1 = ExtResource("3_1v5fl")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
@@ -30,4 +30,4 @@ spot_angle_attenuation = 0.0161761
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_3gah3")
 
-[editable path="MagicLantern2"]
+[editable path="MagicLantern"]

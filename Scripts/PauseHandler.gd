@@ -1,7 +1,7 @@
 extends Node
 
 
-var pauseScene = preload("res://Instances/pauseMenu.tscn")
+var pauseScene = preload("res://Instances/Scenes/pauseMenu.tscn")
 var pauseInstance
 var isPaused = false
 func _ready():
