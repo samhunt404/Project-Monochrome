@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3vm75eecmoty"]
 
-[ext_resource type="Theme" uid="uid://c7hcobkxoi4m0" path="res://Assets/ThemeResources/MainMenu.tres" id="1_85a1k"]
-[ext_resource type="StyleBox" uid="uid://ct5fyq1kfr43x" path="res://Assets/ThemeResources/ButtonOutline.tres" id="2_fmox3"]
+[ext_resource type="Theme" path="res://Assets/ThemeResources/MainMenu.tres" id="1_85a1k"]
+[ext_resource type="StyleBox" path="res://Assets/ThemeResources/ButtonOutline.tres" id="2_fmox3"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3

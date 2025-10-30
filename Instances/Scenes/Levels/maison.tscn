@@ -15,11 +15,13 @@ size = Vector2(50, 50)
 
 [node name="Maison" type="Node3D"]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.25
+shadow_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_t8wlr")
-
-[node name="Player" parent="." instance=ExtResource("2_bv12x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.73545, -1.03371, -20.2008)
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.7498)
@@ -27,14 +29,16 @@ visible = false
 size = Vector3(100, 10, 100)
 material = SubResource("FogMaterial_yk071")
 
+[node name="Player" parent="." instance=ExtResource("2_bv12x")]
+
 [node name="Tripod" parent="." instance=ExtResource("3_3mv4i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.19444, -11)
 
 [node name="Lantern" parent="Tripod" instance=ExtResource("4_u8aon")]
 transform = Transform3D(0.507989, 0, -0.861363, 0, 1, 0, 0.861363, 0, 0.507989, 0, 0.67, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.212365, 0.97719, 0, -0.97719, -0.212365, -7.10414, 1.94877, -16.5035)
+transform = Transform3D(1, 0, 0, 0, -0.212365, 0.97719, 0, -0.97719, -0.212365, -7.10414, 6.99334, -16.5035)
 light_energy = 2.86
 light_volumetric_fog_energy = 8.495
 spot_angle = 31.7702
@@ -48,4 +52,3 @@ mesh = SubResource("PlaneMesh_84ih7")
 shape = SubResource("WorldBoundaryShape3D_kdc41")
 
 [editable path="Tripod"]
-[editable path="Tripod/Tripod2"]
